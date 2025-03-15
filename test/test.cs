@@ -124,6 +124,5 @@ namespace Nyashka.Tests
             Console.SetOut(original);
             consoleOutput.Dispose();
         }
-    }
-    
+    } 
 }
