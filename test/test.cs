@@ -20,7 +20,7 @@ namespace Nyashka.Tests
             adapter.Start();
             Console.Out.Flush();
 
-            Assert.Equal("turn on", consoleOutput.ToString());
+            Assert.Equal("turn on\n", consoleOutput.ToString());
 
             Console.SetOut(original);
             consoleOutput.Dispose();
@@ -39,7 +39,7 @@ namespace Nyashka.Tests
             adapter.Stop();
             Console.Out.Flush();
 
-            Assert.Equal("turn off", consoleOutput.ToString());
+            Assert.Equal("turn off\n", consoleOutput.ToString());
 
             Console.SetOut(original);
             consoleOutput.Dispose();
@@ -59,7 +59,7 @@ namespace Nyashka.Tests
             adapter.Accelerate(speed);
             Console.Out.Flush();
 
-            Assert.Equal($"speed: {speed}", consoleOutput.ToString());
+            Assert.Equal($"speed: {speed}\n", consoleOutput.ToString());
 
             Console.SetOut(original);
             consoleOutput.Dispose();
@@ -82,7 +82,7 @@ namespace Nyashka.Tests
             car.TurnOn();
             Console.Out.Flush();
     
-            Assert.Equal("turn on", consoleOutput.ToString());
+            Assert.Equal("turn on\n", consoleOutput.ToString());
     
             Console.SetOut(original);
             consoleOutput.Dispose();
@@ -100,7 +100,7 @@ namespace Nyashka.Tests
             car.TurnOff();
             Console.Out.Flush();
     
-            Assert.Equal("turn off", consoleOutput.ToString());
+            Assert.Equal("turn off\n", consoleOutput.ToString());
     
             Console.SetOut(original);
             consoleOutput.Dispose();
@@ -119,7 +119,7 @@ namespace Nyashka.Tests
             car.SetSpeed(speed);
             Console.Out.Flush();
     
-            Assert.Equal($"speed: {speed}", consoleOutput.ToString());
+            Assert.Equal($"speed: {speed}\n", consoleOutput.ToString());
     
             Console.SetOut(original);
             consoleOutput.Dispose();
