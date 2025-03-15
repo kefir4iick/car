@@ -31,18 +31,20 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
-            var original = Console.Out;
 
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
-            
-            adapter.Stop();
-            Console.Out.Flush();
+            var original = Console.Out; 
 
-            Assert.Equal("turn off\n", consoleOutput.ToString());
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput); 
 
-            Console.SetOut(original);
-            consoleOutput.Dispose();
+                adapter.Stop();
+                Console.Out.Flush(); 
+
+                Assert.Equal("turn off\n", consoleOutput.ToString());
+            }
+
+            Console.SetOut(original); 
         }
 
         [Fact]
@@ -76,16 +78,17 @@ namespace Nyashka.Tests
             var car = new Car();
             var original = Console.Out;
 
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
-    
-            car.TurnOn();
-            Console.Out.Flush();
-    
-            Assert.Equal("turn on\n", consoleOutput.ToString());
-    
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
+
+                car.TurnOn();
+                Console.Out.Flush();
+
+                Assert.Equal("turn on\n", consoleOutput.ToString());
+            }
+
             Console.SetOut(original);
-            consoleOutput.Dispose();
         }
         
         [Fact]
@@ -112,17 +115,18 @@ namespace Nyashka.Tests
             var car = new Car();
             var original = Console.Out;
 
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
-    
-            int speed = 120;
-            car.SetSpeed(speed);
-            Console.Out.Flush();
-    
-            Assert.Equal($"speed: {speed}\n", consoleOutput.ToString());
-    
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
+
+                int speed = 120;
+                car.SetSpeed(speed);
+                Console.Out.Flush();
+
+                Assert.Equal($"speed: {speed}\n", consoleOutput.ToString());
+            }
+
             Console.SetOut(original);
-            consoleOutput.Dispose();
         }
     } 
 }
