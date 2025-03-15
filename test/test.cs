@@ -38,13 +38,20 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
-            int speed = 120;
 
-            adapter.Accelerate(speed);
+            var original = Console.Out;
 
-            Assert.Contains($"speed: {speed}", consoleOutput.ToString());
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
+
+                int speed = 120;
+                adapter.Accelerate(speed);
+
+                Assert.Contains($"speed: {speed}", consoleOutput.ToString());
+            }
+
+            Console.SetOut(original);
         }
     }
     
