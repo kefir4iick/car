@@ -12,12 +12,19 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
+            var originalConsoleOut = Console.Out;
 
-            adapter.Start();
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
 
-            Assert.Contains("turn on", consoleOutput.ToString());
+                adapter.Start();
+                Console.Out.Flush();
+
+                Assert.Contains("turn on", consoleOutput.ToString());
+            }
+
+            Console.SetOut(originalConsoleOut);
         }
 
         [Fact]
@@ -25,12 +32,19 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
+            var original = Console.Out;
 
-            adapter.Stop();
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
 
-            Assert.Contains("turn off", consoleOutput.ToString());
+                adapter.Stop();
+                Console.Out.Flush();
+
+                Assert.Contains("turn off", consoleOutput.ToString());
+            }
+
+            Console.SetOut(original);
         }
 
         [Fact]
@@ -38,7 +52,6 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
-
             var original = Console.Out;
 
             using (var consoleOutput = new StringWriter())
@@ -47,6 +60,7 @@ namespace Nyashka.Tests
 
                 int speed = 120;
                 adapter.Accelerate(speed);
+                Console.Out.Flush();
 
                 Assert.Contains($"speed: {speed}", consoleOutput.ToString());
             }
