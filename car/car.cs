@@ -9,7 +9,7 @@ namespace Nyashka
         void Accelerate(int speed);
     }
 
-    class Car
+    public class Car
     {
         public void TurnOn()
         {
@@ -27,7 +27,7 @@ namespace Nyashka
         }
     }
 
-    class CarAdapter : IVehicle
+    public class CarAdapter : IVehicle
     {
         private readonly Car _car;
 
@@ -52,7 +52,7 @@ namespace Nyashka
         }
     }
 
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
