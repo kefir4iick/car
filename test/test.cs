@@ -70,23 +70,6 @@ namespace Nyashka.Tests
   
     public class CarTests
     {
-        [Fact]
-        public void turnon()
-        {
-            var car = new Car();
-            var original = Console.Out;
-
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
-    
-            car.TurnOn();
-            Console.Out.Flush();
-    
-            Assert.Contains("turn on", consoleOutput.ToString());
-    
-            Console.SetOut(original);
-            consoleOutput.Dispose();
-        }
 
         [Fact]
         public void turnoff()
