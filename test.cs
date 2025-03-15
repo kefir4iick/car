@@ -11,10 +11,12 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
 
             adapter.Start();
 
-            Assert.True(true);
+            Assert.Contains("turn on", consoleOutput.ToString());
         }
 
         [Fact]
@@ -22,10 +24,12 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
 
             adapter.Stop();
 
-            Assert.True(true);
+            Assert.Contains("turn off", consoleOutput.ToString());
         }
 
         [Fact]
@@ -33,11 +37,12 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
-            int speed = 100;
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
 
             adapter.Accelerate(speed);
 
-            Assert.True(true);
+            Assert.Contains($"speed: {speed}", consoleOutput.ToString());
         }
     }
     
