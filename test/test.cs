@@ -63,6 +63,7 @@ namespace Nyashka.Tests
                 Console.SetOut(consoleOutput);
     
                 car.TurnOn();
+                Console.Out.Flush();
     
                 Assert.Contains("turn on", consoleOutput.ToString());
             }
@@ -81,6 +82,7 @@ namespace Nyashka.Tests
                 Console.SetOut(consoleOutput);
     
                 car.TurnOff();
+                Console.Out.Flush();
     
                 Assert.Contains("turn off", consoleOutput.ToString());
             }
@@ -100,6 +102,7 @@ namespace Nyashka.Tests
     
                 int speed = 120;
                 car.SetSpeed(speed);
+                Console.Out.Flush();
     
                 Assert.Contains($"speed: {speed}", consoleOutput.ToString());
             }
