@@ -40,6 +40,7 @@ namespace Nyashka.Tests
             var adapter = new CarAdapter(car);
             var consoleOutput = new StringWriter();
             Console.SetOut(consoleOutput);
+            int speed = 120;
 
             adapter.Accelerate(speed);
 
