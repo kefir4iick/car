@@ -56,37 +56,55 @@ namespace Nyashka.Tests
         public void turnon()
         {
             var car = new Car();
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
+            var original = Console.Out;
 
-            car.TurnOn();
-
-            Assert.Contains("turn on", consoleOutput.ToString());
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
+    
+                car.TurnOn();
+    
+                Assert.Contains("turn on", consoleOutput.ToString());
+            }
+    
+            Console.SetOut(original);
         }
 
         [Fact]
         public void turnoff()
         {
             var car = new Car();
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
+            var original = Console.Out;
 
-            car.TurnOff();
-
-            Assert.Contains("turn off", consoleOutput.ToString());
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
+    
+                car.TurnOff();
+    
+                Assert.Contains("turn off", consoleOutput.ToString());
+            }
+    
+            Console.SetOut(original);
         }
 
         [Fact]
         public void Speed()
         {
             var car = new Car();
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
-            int speed = 120;
+            var original = Console.Out;
 
-            car.SetSpeed(speed);
-
-            Assert.Contains($"speed: {speed}", consoleOutput.ToString());
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
+    
+                int speed = 120;
+                car.SetSpeed(speed);
+    
+                Assert.Contains($"speed: {speed}", consoleOutput.ToString());
+            }
+    
+            Console.SetOut(original);
         }
     }
 }
