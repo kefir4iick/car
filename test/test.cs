@@ -12,19 +12,18 @@ namespace Nyashka.Tests
         {
             var car = new Car();
             var adapter = new CarAdapter(car);
-            var originalConsoleOut = Console.Out;
+            var original = Console.Out;
 
-            using (var consoleOutput = new StringWriter())
-            {
-                Console.SetOut(consoleOutput);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+            
+            adapter.Start();
+            Console.Out.Flush();
 
-                adapter.Start();
-                Console.Out.Flush();
+            Assert.Contains("turn on", consoleOutput.ToString());
 
-                Assert.Contains("turn on", consoleOutput.ToString());
-            }
-
-            Console.SetOut(originalConsoleOut);
+            Console.SetOut(original);
+            consoleOutput.Dispose();
         }
 
         [Fact]
@@ -34,17 +33,16 @@ namespace Nyashka.Tests
             var adapter = new CarAdapter(car);
             var original = Console.Out;
 
-            using (var consoleOutput = new StringWriter())
-            {
-                Console.SetOut(consoleOutput);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
+            
+            adapter.Stop();
+            Console.Out.Flush();
 
-                adapter.Stop();
-                Console.Out.Flush();
-
-                Assert.Contains("turn off", consoleOutput.ToString());
-            }
+            Assert.Contains("turn off", consoleOutput.ToString());
 
             Console.SetOut(original);
+            consoleOutput.Dispose();
         }
 
         [Fact]
@@ -54,18 +52,17 @@ namespace Nyashka.Tests
             var adapter = new CarAdapter(car);
             var original = Console.Out;
 
-            using (var consoleOutput = new StringWriter())
-            {
-                Console.SetOut(consoleOutput);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
 
-                int speed = 120;
-                adapter.Accelerate(speed);
-                Console.Out.Flush();
+            int speed = 120;
+            adapter.Accelerate(speed);
+            Console.Out.Flush();
 
-                Assert.Contains($"speed: {speed}", consoleOutput.ToString());
-            }
+            Assert.Contains($"speed: {speed}", consoleOutput.ToString());
 
             Console.SetOut(original);
+            consoleOutput.Dispose();
         }
     }
     
@@ -79,17 +76,16 @@ namespace Nyashka.Tests
             var car = new Car();
             var original = Console.Out;
 
-            using (var consoleOutput = new StringWriter())
-            {
-                Console.SetOut(consoleOutput);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
     
-                car.TurnOn();
-                Console.Out.Flush();
+            car.TurnOn();
+            Console.Out.Flush();
     
-                Assert.Contains("turn on", consoleOutput.ToString());
-            }
+            Assert.Contains("turn on", consoleOutput.ToString());
     
             Console.SetOut(original);
+            consoleOutput.Dispose();
         }
 
         [Fact]
@@ -98,17 +94,16 @@ namespace Nyashka.Tests
             var car = new Car();
             var original = Console.Out;
 
-            using (var consoleOutput = new StringWriter())
-            {
-                Console.SetOut(consoleOutput);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
     
-                car.TurnOff();
-                Console.Out.Flush();
+            car.TurnOff();
+            Console.Out.Flush();
     
-                Assert.Contains("turn off", consoleOutput.ToString());
-            }
+            Assert.Contains("turn off", consoleOutput.ToString());
     
             Console.SetOut(original);
+            consoleOutput.Dispose();
         }
 
         [Fact]
@@ -117,18 +112,17 @@ namespace Nyashka.Tests
             var car = new Car();
             var original = Console.Out;
 
-            using (var consoleOutput = new StringWriter())
-            {
-                Console.SetOut(consoleOutput);
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
     
-                int speed = 120;
-                car.SetSpeed(speed);
-                Console.Out.Flush();
+            int speed = 120;
+            car.SetSpeed(speed);
+            Console.Out.Flush();
     
-                Assert.Contains($"speed: {speed}", consoleOutput.ToString());
-            }
+            Assert.Contains($"speed: {speed}", consoleOutput.ToString());
     
             Console.SetOut(original);
+            consoleOutput.Dispose();
         }
     }
 }
