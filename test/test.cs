@@ -5,6 +5,7 @@ using Nyashka;
 
 namespace Nyashka.Tests
 {
+    [Collection("NonParallelTests")]
     public class CarAdapterTests
     {
         [Fact]
@@ -69,7 +70,7 @@ namespace Nyashka.Tests
     }
     
     
-  
+    [Collection("NonParallelTests")]
     public class CarTests
     {
         [Fact]
