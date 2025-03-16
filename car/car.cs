@@ -52,6 +52,8 @@ namespace Nyashka
         }
     }
 
+// i must admit, csharp isn't that bad
+
     public class Program
     {
         static void Main(string[] args)
